@@ -28,11 +28,11 @@ $privateKey = null;
 $domain = null;
 $domainTld  = null;
 $domainEntry = null;
-$publicIp = file_get_contents('https://api.ipify.org');
-$options = getopt("u:p:d:", ["username:", "private-key:", "domain:"]);
+$publicIp = null;
+$options = getopt("u:p:d:a:", ["username:", "private-key:", "domain:", "address:"]);
 
 if(!isset($options['u']) && !isset($options['username'])){
-    writeError("No username provider\n");
+    writeError("No username provided\n");
     exit(2);
 } else {
     if(isset($options['username'])){
@@ -43,7 +43,7 @@ if(!isset($options['u']) && !isset($options['username'])){
 }
 
 if(!isset($options['p']) && !isset($options['private-key'])){
-    writeError("No private key provider\n");
+    writeError("No private key provided\n");
     exit(2);
 }else {
     if(isset($options['private-key'])){
@@ -60,13 +60,22 @@ if(!isset($options['p']) && !isset($options['private-key'])){
 }
 
 if(!isset($options['d']) && !isset($options['domain'])){
-    writeError("No domain provider\n");
+    writeError("No domain provided\n");
     exit(2);
 }else {
     if(isset($options['domain'])){
         $domain = $options['domain'];
     }else {
         $domain = $options['d'];
+    }
+}
+if(!isset($options['a']) && !isset($options['address'])){
+    $publicIp = file_get_contents('https://api.ipify.org');
+}else {
+    if(isset($options['address'])){
+        $publicIp = $options['address'];
+    }else {
+        $publicIp = $options['a'];
     }
 }
 

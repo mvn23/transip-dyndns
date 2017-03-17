@@ -21,6 +21,8 @@ $ transip-dyndns.php  --username myusername --private-key /home/foo/key.pem --do
 
 *--domain | d* The domain for which the ip must be set. (including optional subdomain)
 
+*--address | a* The ip address to store in the Transip DNS record
+
 ##install
 
 1. Download or clone the repository 
